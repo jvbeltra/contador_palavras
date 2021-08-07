@@ -39,11 +39,11 @@ int main() {
     int ocorrencias = 0;
 
 
-    omp_set_num_threads(3);
+    omp_set_num_threads(12);
 
 #pragma omp parallel for
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 12; i++) {
         ocorrencias = contaOcorrencias(palavra[i]);
-        printf("A palavra ' %s ' foi encontrada %d vezes.\n", palavra[i], ocorrencias);
+        printf("A palavra '%s' foi encontrada %d vezes.\n", palavra[i], ocorrencias);
     }
 }

@@ -32,9 +32,9 @@ int main() {
     char palavra[12][10] = {" God ", " Jesus ", "Jerusalem", ":", " and ", " Joshua ", " Israel ", " gold ", " king ", " spirit ", " lord ", " they "};
     int ocorrencias = 0;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 12; i++) {
         ocorrencias = contaOcorrencias(palavra[i]);
-        printf("A palavra %s foi encontrada %d vezes.\n", palavra[i], ocorrencias);
+        printf("A palavra '%s' foi encontrada %d vezes.\n", palavra[i], ocorrencias);
     }
 
     return 0;
