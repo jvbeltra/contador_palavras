@@ -7,7 +7,7 @@
 
 #define BUFFER_SIZE 100
 
-int contaOcorrencias(const char *word) {
+int contaOcorrencias(const char *palavra) {
 
     FILE *fptr;
     fptr = fopen("biblia.txt", "r");
@@ -18,26 +18,26 @@ int contaOcorrencias(const char *word) {
 
     ocorrencias = 0;
 
+    // Faz a leitura de todas as linhas do arquivo
     while ((fgets(str, BUFFER_SIZE, fptr)) != NULL) {
         index = 0;
 
-        {
+        // Procura a próxima ocorrencia da palavra  no texto
+        while ((pos = strstr(str + index, palavra)) != NULL) {
 
-            while ((pos = strstr(str + index, word)) != NULL) {
-
-                {
-                    index = (pos - str) + 1;
-                    ocorrencias++;
-                }
-            }
+            //Guarda o indice da palavra encontrada, assim o while consegue encontrar uma ocorrencia diferente da atual
+            index = (pos - str) + 1;
+            ocorrencias++;
         }
     }
+
     fclose(fptr);
     return ocorrencias;
 }
 
 int main() {
-    char palavra[12][10] = {" God ", " Jesus ", "Jerusalem", ":", " and ", " Joshua ", " Israel ", " gold ", " king ", " spirit ", " lord ", " they "};
+    char palavra[12][10] = {" God ", " Jesus ", "Jerusalem", ":", " and ", " Joshua ", " Israel ", " gold ", " king ",
+                            " spirit ", " lord ", " they "};
     int ocorrencias = 0;
 
 
@@ -51,7 +51,7 @@ int main() {
         ocorrencias = contaOcorrencias(palavra[i]);
 
         gettimeofday(&t2, NULL);
-        double t_total = (t2.tv_sec - t1.tv_sec) + ((t2.tv_usec - t1.tv_usec)/1000000.0);
+        double t_total = (t2.tv_sec - t1.tv_sec) + ((t2.tv_usec - t1.tv_usec) / 1000000.0);
 
         printf("A palavra '%s' foi encontrada %d vezes. - Tempo de exec: %f seg. \n", palavra[i], ocorrencias, t_total);
 
